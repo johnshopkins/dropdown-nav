@@ -1,10 +1,10 @@
 const classUtils = require('../utils/class');
 
-const Hamburger = function (el, eventEmitter, menu) {
+const Hamburger = function (el, eventEmitter, menuItems) {
 
   this.el = el;
   this.eventEmitter = eventEmitter;
-  this.menu = menu;
+  this.menuItems = menuItems;
 
   this.opened = false;
 
@@ -51,12 +51,29 @@ Hamburger.prototype.toggle = function (e) {
 
 Hamburger.prototype.handleMenuStyleChangen = function (newStyle) {
 
-  if (newStyle === 'mobile' && this.menu.contains(document.activeElement)) {
+  if (newStyle === 'mobile' && this.focusInMenu()) {
     // only open if focused element is within the menu
     this.open();
   } else if (newStyle === 'nonmobile') {
     this.close();
   }
+
+};
+
+Hamburger.prototype.focusInMenu = function () {
+
+  let focusInMenu = false;
+  const numItems = this.menuItems.length;
+
+  for (let i = 0; i < numItems; i++) {
+    const item = this.menuItems[i];
+    if (item.contains(document.activeElement)) {
+      focusInMenu = true;
+      break;
+    }
+  }
+
+  return focusInMenu;
 
 };
 
