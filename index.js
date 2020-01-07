@@ -7,7 +7,7 @@ const SkipToMainHandler = require('./components/SkipToMainHandler');
 
 const Dropdown = function (el, searchObject) {
 
-  this.el = el;
+  this.el = document.querySelector('.jhu-top-nav');
   this.searchObject = searchObject;
 
   this.eventEmitter = new EventEmitter();
