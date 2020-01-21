@@ -22,6 +22,18 @@ const NavItem = function (el, eventEmitter) {
   // keyboard/voiceover (first a)
   this.el.querySelector('a').addEventListener('focus', this.open.bind(this));
 
+  // keyboard/voiceover (last a)
+  if (this.subnav) {
+    const links = this.subnav.querySelectorAll('li a');
+    const last = links[links.length- 1];
+
+    this.el.addEventListener('focusout', (e) => {
+      if (e.target === last) {
+        this.close();
+      }
+    });
+  }
+
   // mouse (first a)
   this.el.querySelector('a').addEventListener('mouseover', this.open.bind(this));
   this.el.addEventListener('mouseleave', this.close.bind(this));
