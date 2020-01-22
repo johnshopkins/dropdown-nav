@@ -18,7 +18,7 @@
   "homepage": "https://github.com/johnshopkins/dropdown-nav#readme",
   "dependencies": {
     "breakpoints": "git+ssh://git@github.com/johnshopkins/breakpoints.git#v1.0.1",
-    "window-resize-watcher": "git+ssh://git@github.com/johnshopkins/window-resize-watcher.git#v1.1.1",
+    "window-resize-watcher": "git+ssh://git@github.com/johnshopkins/window-resize-watcher.git#v1.2.0",
     "wolfy87-eventemitter": "^5.2.8"
   }
 }
