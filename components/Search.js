@@ -1,4 +1,4 @@
-const classUtils = require('../utils/class');
+const classUtils = require('js-utils').class;
 
 const Search = function (el, eventEmitter, searchObject) {
 
