@@ -5,10 +5,9 @@ const NavItem = require('./components/NavItem');
 const Search = require('./components/Search');
 const SkipToMainHandler = require('./components/SkipToMainHandler');
 
-const Dropdown = function (el, searchObject) {
+const Dropdown = function (el) {
 
   this.el = el;
-  this.searchObject = searchObject;
 
   this.eventEmitter = new EventEmitter();
 
@@ -34,9 +33,9 @@ Dropdown.prototype.getSearch = function () {
 
   const el = this.el.querySelector('.search-menu');
 
-  if (!el || !this.searchObject) return null;
+  if (!el) return null;
 
-  return new Search(el, this.eventEmitter, this.searchObject);
+  return new Search(this.el, el, this.eventEmitter);
 };
 
 Dropdown.prototype.getNavItems = function () {
