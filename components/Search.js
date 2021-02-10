@@ -23,6 +23,7 @@ const Search = function (container, searchButton, eventEmitter) {
 Search.prototype.addModalHtml = function () {
 
   this.modal = template();
+  this.modal.style.display = 'none';
   this.container.insertBefore(this.modal, this.container.firstChild);
 
   // save some references for later
