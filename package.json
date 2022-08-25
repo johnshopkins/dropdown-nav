@@ -1,6 +1,6 @@
 {
   "name": "dropdown-nav",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "JavaScript tht powers dropdown navigation on (some) JHU sites",
   "main": "index.js",
   "scripts": {
