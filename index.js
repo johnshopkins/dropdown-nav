@@ -26,7 +26,7 @@ Dropdown.prototype.getHambuger = function () {
 
   if (!el) return null;
 
-  return new Hamburger(el, this.eventEmitter, this.el.querySelectorAll('.navitem'));
+  return new Hamburger(el, this.eventEmitter, this.el.querySelectorAll('.menu-item'));
 };
 
 Dropdown.prototype.getSearch = function () {
@@ -40,7 +40,7 @@ Dropdown.prototype.getSearch = function () {
 
 Dropdown.prototype.getNavItems = function () {
 
-  const elems = this.el.querySelectorAll('.tier-1 > li.navitem');
+  const elems = this.el.querySelectorAll('.tier-1 > li.menu-item');
 
   if (!elems) return null;
 
