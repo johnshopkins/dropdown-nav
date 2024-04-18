@@ -1,16 +1,13 @@
-const classUtils = require('js-utils').class;
-
-const NavItem = function (el, eventEmitter) {
+const NavItem = function (el) {
 
   this.el = el;
   this.subnav = this.el.querySelector('ul');
-  this.eventEmitter = eventEmitter;
 
   this.opened = false;
 
-  this.eventEmitter.addListener('skiptomain:focused', this.close.bind(this));
-  this.eventEmitter.addListener('menu:closeall', this.close.bind(this));
-  this.eventEmitter.addListener('search:opened', this.close.bind(this));
+  addEventListener('skiptomain:focused', this.close.bind(this));
+  addEventListener('menu:closeall', this.close.bind(this));
+  addEventListener('search:opened', this.close.bind(this));
 
   // touch screens
   this.toggleTrigger = this.el.querySelector('.toggle-section');
@@ -45,10 +42,10 @@ NavItem.prototype.open = function (e) {
   // already opened
   if (this.opened) return;
 
-  this.eventEmitter.emit('menu:closeall'); // close the other nav dropdowns
+  dispatchEvent(new Event('menu:closeall')); // close the other nav dropdowns
 
   this.opened = true;
-  classUtils.addClass(this.el, 'open');
+  this.el.classList.add('open');
   if (this.subnav) this.subnav.removeAttribute('aria-hidden');
 
   if (this.toggleTrigger) this.updateText();
@@ -61,7 +58,7 @@ NavItem.prototype.close = function (e) {
   if (!this.opened) return;
 
   this.opened = false;
-  classUtils.removeClass(this.el, 'open');
+  this.el.classList.remove('open');
   if (this.subnav) this.subnav.setAttribute('aria-hidden', true);
 
   if (this.toggleTrigger) this.updateText();
@@ -86,12 +83,12 @@ NavItem.prototype.updateText = function () {
 
   if (this.opened) {
     label.textContent = label.textContent.replace('Open', 'Close');
-    classUtils.removeClass(this.icon, 'fa-plus-square-o');
-    classUtils.addClass(this.icon, 'fa-minus-square-o');
+    this.icon.classList.remove('fa-plus-square-o');
+    this.icon.classList.add('fa-minus-square-o');
   } else {
     label.textContent = label.textContent.replace('Close', 'Open');
-    classUtils.removeClass(this.icon, 'fa-minus-square-o');
-    classUtils.addClass(this.icon, 'fa-plus-square-o');
+    this.icon.classList.remove('fa-minus-square-o');
+    this.icon.classList.add('fa-plus-square-o');
   }
 
 };

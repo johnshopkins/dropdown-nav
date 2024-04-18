@@ -1,7 +1,7 @@
 const breakpoints = require('breakpoints');
 const WindowResizeWatcher = require('window-resize-watcher');
 
-module.exports = function (eventEmitter) {
+module.exports = function () {
 
   new WindowResizeWatcher('nav');
 
@@ -18,7 +18,7 @@ module.exports = function (eventEmitter) {
 
     if (this.menuStyle !== newStyle) {
       this.menuStyle = newStyle;
-      eventEmitter.emit('menustyle:change', newStyle);
+      dispatchEvent(new CustomEvent('menustyle:change', { detail: newStyle }));
     }
 
   });

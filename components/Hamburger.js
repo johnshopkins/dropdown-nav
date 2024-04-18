@@ -1,16 +1,13 @@
-const classUtils = require('js-utils').class;
-
-const Hamburger = function (el, eventEmitter, menuItems) {
+const Hamburger = function (el, menuItems) {
 
   this.el = el;
-  this.eventEmitter = eventEmitter;
   this.menuItems = menuItems;
 
   this.opened = false;
 
-  this.eventEmitter.addListener('skiptomain:focused', this.close.bind(this));
-  this.eventEmitter.addListener('search:opened', this.close.bind(this));
-  this.eventEmitter.addListener('menustyle:change', this.handleMenuStyleChangen.bind(this));
+  addEventListener('skiptomain:focused', this.close.bind(this));
+  addEventListener('search:opened', this.close.bind(this));
+  addEventListener('menustyle:change', this.handleMenuStyleChanged.bind(this));
 
   this.el.addEventListener('click', (e) => this.toggle(e));
 
@@ -22,8 +19,8 @@ Hamburger.prototype.open = function () {
   if (this.opened) return;
 
   this.opened = true;
-  this.eventEmitter.emit('hamburger:opened');
-  classUtils.addClass(this.el, 'open')
+  dispatchEvent(new Event('hamburger:opened'));
+  this.el.classList.add('open');
 
 };
 
@@ -33,7 +30,7 @@ Hamburger.prototype.close = function () {
   if (!this.opened) return;
 
   this.opened = false;
-  classUtils.removeClass(this.el, 'open');
+  this.el.classList.remove('open');
 
 };
 
@@ -49,7 +46,9 @@ Hamburger.prototype.toggle = function (e) {
 
 };
 
-Hamburger.prototype.handleMenuStyleChangen = function (newStyle) {
+Hamburger.prototype.handleMenuStyleChanged = function (e) {
+
+  const newStyle = e.detail;
 
   if (newStyle === 'mobile' && this.focusInMenu()) {
     // only open if focused element is within the menu
