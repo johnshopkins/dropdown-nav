@@ -1,18 +1,16 @@
 const template = require('../templates/search');
 
-const Search = function (container, searchButton, eventEmitter) {
+const Search = function (container, searchButton) {
 
   this.container = container;
   this.searchButton = searchButton;
-
-  this.eventEmitter = eventEmitter;
 
   this.addModalHtml();
 
   this.opened = false;
 
-  this.eventEmitter.addListener('skiptomain:focused', this.close.bind(this));
-  this.eventEmitter.addListener('hamburger:opened', this.close.bind(this));
+  addEventListener('skiptomain:focused', this.close.bind(this));
+  addEventListener('hamburger:opened', this.close.bind(this));
 
   this.searchButton.addEventListener('click', (e) => this.toggle(e));
 
@@ -50,7 +48,7 @@ Search.prototype.open = function () {
   }, 50); // delay to allow for display:block to take effect
 
   this.opened = true;
-  this.eventEmitter.emit('search:opened');
+  dispatchEvent(new Event('search:opened'));
 
 };
 

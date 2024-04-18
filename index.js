@@ -1,4 +1,3 @@
-const EventEmitter = require('wolfy87-eventemitter');
 const MenuStyleHandler = require('./components/MenuStyleHandler');
 const Hamburger = require('./components/Hamburger');
 const NavItem = require('./components/NavItem');
@@ -9,14 +8,12 @@ const Dropdown = function (el) {
 
   this.el = el;
 
-  this.eventEmitter = new EventEmitter();
-
   this.hamburger = this.getHambuger();
   this.search = this.getSearch();
   this.navItems = this.getNavItems();
 
-  new MenuStyleHandler(this.eventEmitter);
-  new SkipToMainHandler(this.eventEmitter);
+  new MenuStyleHandler();
+  new SkipToMainHandler();
 
 };
 
@@ -26,7 +23,7 @@ Dropdown.prototype.getHambuger = function () {
 
   if (!el) return null;
 
-  return new Hamburger(el, this.eventEmitter, this.el.querySelectorAll('.menu-item'));
+  return new Hamburger(el, this.el.querySelectorAll('.menu-item'));
 };
 
 Dropdown.prototype.getSearch = function () {
@@ -35,7 +32,7 @@ Dropdown.prototype.getSearch = function () {
 
   if (!el) return null;
 
-  return new Search(this.el, el, this.eventEmitter);
+  return new Search(this.el, el);
 };
 
 Dropdown.prototype.getNavItems = function () {
@@ -48,7 +45,7 @@ Dropdown.prototype.getNavItems = function () {
   for (let i = 0; i < elems.length; i++) {
     items.push(new NavItem(
       elems[i],
-      this.eventEmitter)
+      )
     );
   }
 

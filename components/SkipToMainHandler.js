@@ -1,7 +1,7 @@
-module.exports = function (eventEmitter) {
+module.exports = function () {
   
   document.querySelector('.skip-to-main').addEventListener('focus', (e) => {
-    eventEmitter.emit('skiptomain:focused');
+    dispatchEvent(new Event('skiptomain:focused'));
   });
 
 };

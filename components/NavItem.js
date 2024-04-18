@@ -1,14 +1,13 @@
-const NavItem = function (el, eventEmitter) {
+const NavItem = function (el) {
 
   this.el = el;
   this.subnav = this.el.querySelector('ul');
-  this.eventEmitter = eventEmitter;
 
   this.opened = false;
 
-  this.eventEmitter.addListener('skiptomain:focused', this.close.bind(this));
-  this.eventEmitter.addListener('menu:closeall', this.close.bind(this));
-  this.eventEmitter.addListener('search:opened', this.close.bind(this));
+  addEventListener('skiptomain:focused', this.close.bind(this));
+  addEventListener('menu:closeall', this.close.bind(this));
+  addEventListener('search:opened', this.close.bind(this));
 
   // touch screens
   this.toggleTrigger = this.el.querySelector('.toggle-section');
@@ -43,7 +42,7 @@ NavItem.prototype.open = function (e) {
   // already opened
   if (this.opened) return;
 
-  this.eventEmitter.emit('menu:closeall'); // close the other nav dropdowns
+  dispatchEvent(new Event('menu:closeall')); // close the other nav dropdowns
 
   this.opened = true;
   this.el.classList.add('open');
