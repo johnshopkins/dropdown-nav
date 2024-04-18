@@ -1,11 +1,7 @@
 {
-  "name": "dropdown-nav",
+  "name": "@johnshopkins/dropdown-nav",
   "version": "1.4.1",
-  "description": "JavaScript tht powers dropdown navigation on (some) JHU sites",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/johnshopkins/dropdown-nav.git"
@@ -18,7 +14,6 @@
   "homepage": "https://github.com/johnshopkins/dropdown-nav#readme",
   "dependencies": {
     "breakpoints": "git+ssh://git@github.com/johnshopkins/breakpoints.git#v1.0.1",
-    "js-utils": "git+ssh://git@github.com/johnshopkins/js-utils.git#v1.0.0",
     "window-resize-watcher": "git+ssh://git@github.com/johnshopkins/window-resize-watcher.git#v1.2.0"
   }
 }

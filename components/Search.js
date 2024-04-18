@@ -1,4 +1,3 @@
-const classUtils = require('js-utils').class;
 const template = require('../templates/search');
 
 const Search = function (container, searchButton, eventEmitter) {
@@ -39,12 +38,15 @@ Search.prototype.open = function () {
   this.modal.style.display = 'block';
 
   setTimeout(() => {
-    classUtils.addClass(this.modal, 'modal-open');
-    classUtils.addClass(this.searchButton, 'open');
-    classUtils.addClass(document.body, 'search-modal-open');
-    classUtils.addClass(document.body, 'slide-modal-open');
+
+    this.modal.classList.add('modal-open');
+    this.searchButton.classList.add('open');
+    document.body.classList.add('search-modal-open');
+    document.body.classList.add('slide-modal-open');
+
     this.modal.removeAttribute('aria-hidden');
     this.input.focus();
+
   }, 50); // delay to allow for display:block to take effect
 
   this.opened = true;
@@ -59,10 +61,11 @@ Search.prototype.close = function () {
     return null;
   }
 
-  classUtils.removeClass(this.modal, 'modal-open'); // triggers css animation
-  classUtils.removeClass(this.searchButton, 'open');
-  classUtils.removeClass(document.body, 'search-modal-open');
-  classUtils.removeClass(document.body, 'slide-modal-open');
+  this.modal.classList.remove('modal-open'); // triggers css animation
+  this.searchButton.classList.remove('open');
+  document.body.classList.remove('search-modal-open');
+  document.body.classList.remove('slide-modal-open');
+
   this.modal.setAttribute('aria-hidden', true);
   this.searchButton.querySelector('a').focus();
 

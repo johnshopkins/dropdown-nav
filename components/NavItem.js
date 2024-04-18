@@ -1,5 +1,3 @@
-const classUtils = require('js-utils').class;
-
 const NavItem = function (el, eventEmitter) {
 
   this.el = el;
@@ -48,7 +46,7 @@ NavItem.prototype.open = function (e) {
   this.eventEmitter.emit('menu:closeall'); // close the other nav dropdowns
 
   this.opened = true;
-  classUtils.addClass(this.el, 'open');
+  this.el.classList.add('open');
   if (this.subnav) this.subnav.removeAttribute('aria-hidden');
 
   if (this.toggleTrigger) this.updateText();
@@ -61,7 +59,7 @@ NavItem.prototype.close = function (e) {
   if (!this.opened) return;
 
   this.opened = false;
-  classUtils.removeClass(this.el, 'open');
+  this.el.classList.remove('open');
   if (this.subnav) this.subnav.setAttribute('aria-hidden', true);
 
   if (this.toggleTrigger) this.updateText();
@@ -86,12 +84,12 @@ NavItem.prototype.updateText = function () {
 
   if (this.opened) {
     label.textContent = label.textContent.replace('Open', 'Close');
-    classUtils.removeClass(this.icon, 'fa-plus-square-o');
-    classUtils.addClass(this.icon, 'fa-minus-square-o');
+    this.icon.classList.remove('fa-plus-square-o');
+    this.icon.classList.add('fa-minus-square-o');
   } else {
     label.textContent = label.textContent.replace('Close', 'Open');
-    classUtils.removeClass(this.icon, 'fa-minus-square-o');
-    classUtils.addClass(this.icon, 'fa-plus-square-o');
+    this.icon.classList.remove('fa-minus-square-o');
+    this.icon.classList.add('fa-plus-square-o');
   }
 
 };

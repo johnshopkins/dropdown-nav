@@ -1,5 +1,3 @@
-const classUtils = require('js-utils').class;
-
 const Hamburger = function (el, eventEmitter, menuItems) {
 
   this.el = el;
@@ -23,7 +21,7 @@ Hamburger.prototype.open = function () {
 
   this.opened = true;
   this.eventEmitter.emit('hamburger:opened');
-  classUtils.addClass(this.el, 'open')
+  this.el.classList.add('open');
 
 };
 
@@ -33,7 +31,7 @@ Hamburger.prototype.close = function () {
   if (!this.opened) return;
 
   this.opened = false;
-  classUtils.removeClass(this.el, 'open');
+  this.el.classList.remove('open');
 
 };
 
